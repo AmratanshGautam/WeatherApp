@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__) 
 
 # Get API key from environment variable 
-API_KEY = os.getenv("ba6ab82197a412e33ea8744d6bce72dc") 
+API_KEY = os.getenv("9eee2c741f81a1226c1a3bbd6e893f1b") 
 
 @app.route("/", methods=["GET", "POST"]) 
 def index(): 
@@ -17,8 +17,9 @@ def index():
         city = request.form["city"] 
         if city: 
             url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric" 
-
             response = requests.get(url) 
+
+            print("API Response:", response.text)
 
             if response.status_code == 200: # If request is successful 
                 weather_data = response.json() 
