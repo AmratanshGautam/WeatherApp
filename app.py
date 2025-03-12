@@ -3,7 +3,8 @@ import requests
 
 app = Flask(__name__)
 
-API_KEY = "ba6ab82197a412e33ea8744d6bce72dc"  # Replace with your actual API key
+import os
+API_KEY = os.getenv("ba6ab82197a412e33ea8744d6bce72dc")  # Replace with your actual API key
 
 @app.route("/")
 def index():
