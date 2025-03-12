@@ -17,14 +17,16 @@ def index():
         city = request.form["city"] 
         if city: 
             url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric" 
-            
+
             response = requests.get(url) 
+
             if response.status_code == 200: # If request is successful 
                 weather_data = response.json() 
-                else: 
+            else: 
                 error_message = "City not found or API error. Please try again." 
 
     return render_template("index.html", weather=weather_data, error=error_message) 
+
 if __name__ == "__main__": 
     port = int(os.environ.get("PORT", 10000)) # Use Render's port 
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
